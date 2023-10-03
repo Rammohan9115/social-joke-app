@@ -2,10 +2,11 @@ import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { InfiniteTweetList } from "~/components/InfiniteTweetList";
+import JokeGenerator from "~/components/JokeGenerator";
 import { NewTweetForm } from "~/components/NewTweetForm";
 import { api } from "~/utils/api";
 
-const TABS = ["Recent", "Following"] as const;
+const TABS = ["Recent", "Following", "Joke Gen"] as const;
 
 const Home: NextPage = () => {
   const [selectedTab, setSelectedTab] =
@@ -36,7 +37,7 @@ const Home: NextPage = () => {
         )}
       </header>
       <NewTweetForm />
-      {selectedTab === "Recent" ? <RecentTweets /> : <FollowingTweets />}
+      {selectedTab === "Recent" ? <RecentTweets /> : selectedTab === "Following" ? <FollowingTweets /> : <JokeGenTab />}
     </>
   );
 };
@@ -72,6 +73,15 @@ function FollowingTweets() {
       hasMore={tweets.hasNextPage}
       fetchNewTweets={tweets.fetchNextPage}
     />
+  );
+}
+
+function JokeGenTab() {
+  return (
+    <div className="p-4">
+      {/* Placeholder content for the Joke Gen tab */}
+      <JokeGenerator/>
+    </div>
   );
 }
 

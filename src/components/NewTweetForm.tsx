@@ -95,7 +95,7 @@ function Form() {
           placeholder="What's happening?"
         />
       </div>
-      <Button className="self-end">Tweet</Button>
+      <Button className="self-end">Jokify</Button>
     </form>
   );
 }
